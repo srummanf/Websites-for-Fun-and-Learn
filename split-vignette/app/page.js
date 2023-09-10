@@ -47,17 +47,20 @@ export default function Home() {
     y: useSpring(0, spring)
   }
 
-  useEffect(() => {
+  const smoothScroll = () => {
     const lenis = new Lenis()
-
     function raf(time) {
       lenis.raf(time)
       requestAnimationFrame(raf)
     }
-
     requestAnimationFrame(raf)
+  }
+
+  useEffect(() => {
+    smoothScroll()
   }, [])
 
+  // This snippet is used to center teh cursor of the mouse with an element
   const mouseMove = (e) => {
     const { clientX, clientY } = e;
     const targetX = clientX - (window.innerWidth / 2 * 0.25);
